@@ -1,0 +1,65 @@
+/* ==========================================================================
+   DE VIRTUAL LAB — RESPONSIVE MEDIA QUERIES (responsive.css)
+   ========================================================================== */
+
+/* Large Screens */
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1140px;
+  }
+}
+
+/* Tablets and Medium Devices */
+@media (max-width: 991.98px) {
+  .de-hero {
+    padding: 2.5rem 1rem 1.5rem 1rem;
+  }
+
+  .de-hero h1 {
+    font-size: 2.2rem;
+  }
+
+  .de-hero p.lead {
+    font-size: 1.05rem;
+  }
+
+  .circuit-canvas-container {
+    min-height: 320px;
+  }
+
+  .circuit-svg-stage {
+    height: 230px;
+  }
+}
+
+/* Mobile Devices */
+@media (max-width: 575.98px) {
+  .de-navbar .navbar-brand {
+    font-size: 1.15rem;
+  }
+
+  .btn-de-primary, .btn-de-secondary {
+    padding: 0.5rem 1.1rem;
+    font-size: 0.9rem;
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+
+  .de-hero h1 {
+    font-size: 1.8rem;
+  }
+
+  .feature-card {
+    padding: 1.25rem;
+  }
+
+  .circuit-svg-stage {
+    height: 190px;
+  }
+
+  .output-led-glow {
+    width: 48px;
+    height: 48px;
+    font-size: 1.2rem;
+  }
+}

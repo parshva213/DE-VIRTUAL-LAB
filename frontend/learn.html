@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Learn Hub — DE Virtual Lab</title>
+  <meta name="description" content="Digital Electronics Learning Hub featuring Number Systems, Binary Codes, Logic Gates, Boolean Laws, and interactive converters.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+
+  <div id="navbar-mount"></div>
+
+  <main class="container py-4">
+    <div class="mb-4 text-center">
+      <h1 class="fw-bold text-white mb-2"><i class="bi bi-book text-cyan me-2"></i> Digital Electronics Learn Hub</h1>
+      <p class="text-secondary lead">Master core syllabus topics, number conversions, and logic gate theory.</p>
+    </div>
+
+    <!-- Interactive Number System Converter Tool -->
+    <div class="de-glass-card p-4 mb-5">
+      <h4 class="fw-bold text-cyan mb-3"><i class="bi bi-arrow-repeat me-2"></i> Interactive Number Systems & Complement Converter</h4>
+      <p class="text-secondary small mb-3">Enter an integer decimal value to view instant conversions across Binary, Octal, Hexadecimal, 1's Complement, and 2's Complement.</p>
+      
+      <div class="row g-3 mb-4">
+        <div class="col-md-3">
+          <label class="form-label text-white font-mono small">Decimal (Base 10)</label>
+          <input type="number" id="num-input-decimal" class="form-control font-mono fs-5" value="25" min="0" max="255">
+        </div>
+        <div class="col-md-3">
+          <label class="form-label text-white font-mono small">Binary (Base 2)</label>
+          <input type="text" id="res-binary" class="form-control font-mono text-success fw-bold fs-5" readonly value="00011001">
+        </div>
+        <div class="col-md-3">
+          <label class="form-label text-white font-mono small">Octal (Base 8)</label>
+          <input type="text" id="res-octal" class="form-control font-mono text-info fw-bold fs-5" readonly value="31">
+        </div>
+        <div class="col-md-3">
+          <label class="form-label text-white font-mono small">Hexadecimal (Base 16)</label>
+          <input type="text" id="res-hex" class="form-control font-mono text-warning fw-bold fs-5" readonly value="19">
+        </div>
+      </div>
+
+      <div class="row g-3">
+        <div class="col-md-6">
+          <label class="form-label text-white font-mono small">8-bit 1's Complement</label>
+          <input type="text" id="res-1comp" class="form-control font-mono text-success fw-bold fs-5" readonly value="11100110">
+        </div>
+        <div class="col-md-6">
+          <label class="form-label text-white font-mono small">8-bit 2's Complement</label>
+          <input type="text" id="res-2comp" class="form-control font-mono text-white fw-bold fs-5" readonly value="11100111">
+        </div>
+      </div>
+    </div>
+
+    <!-- Accordion Syllabus Lessons -->
+    <div class="accordion mb-5" id="learnAccordion">
+      
+      <!-- Lesson 1 -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingOne">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            <i class="bi bi-gear-fill me-2"></i> Lesson 1: Logic Gates & Truth Tables
+          </button>
+        </h2>
+        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#learnAccordion">
+          <div class="accordion-body">
+            <p>Logic gates are basic electronic circuits that perform logical operations on binary input signals. Standard primitive gates include AND, OR, NOT, NAND, NOR, XOR, and XNOR.</p>
+            <ul class="mb-0">
+              <li><strong>AND Gate:</strong> Output is HIGH (1) if and only if all inputs are HIGH (1).</li>
+              <li><strong>OR Gate:</strong> Output is HIGH (1) if at least one input is HIGH (1).</li>
+              <li><strong>NOT Gate (Inverter):</strong> Flips the input signal (0 becomes 1, 1 becomes 0).</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Lesson 2 -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingTwo">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+            <i class="bi bi-diagram-3-fill me-2"></i> Lesson 2: Universal Gates (NAND & NOR)
+          </button>
+        </h2>
+        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#learnAccordion">
+          <div class="accordion-body">
+            <p>NAND and NOR gates are termed <strong>Universal Gates</strong> because any Boolean logic circuit (including AND, OR, NOT, XOR) can be constructed exclusively using only NAND gates or only NOR gates.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Lesson 3 -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingThree">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+            <i class="bi bi-calculator me-2"></i> Lesson 3: Boolean Algebra Laws & De Morgan's Theorems
+          </button>
+        </h2>
+        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#learnAccordion">
+          <div class="accordion-body">
+            <p>Boolean algebra provides mathematical principles to simplify logic circuits, reducing gate count and propagation delay.</p>
+            <ul>
+              <li><strong>De Morgan's Theorem 1:</strong> (A · B)' = A' + B'</li>
+              <li><strong>De Morgan's Theorem 2:</strong> (A + B)' = A' · B'</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Syllabus Theory Cards -->
+    <div class="row g-4">
+      <div class="col-md-6">
+        <div class="de-glass-card p-4 h-100">
+          <h4 class="fw-bold text-white mb-3"><i class="bi bi-cpu text-info me-2"></i> 1. Basic Logic Gates</h4>
+          <p class="text-secondary">Logic gates are the fundamental building blocks of digital electronic systems. They take binary inputs (0 or 1) and produce a single binary output.</p>
+          <ul class="text-secondary small">
+            <li><strong>AND Gate:</strong> Output is 1 only if all inputs are 1.</li>
+            <li><strong>OR Gate:</strong> Output is 1 if at least one input is 1.</li>
+            <li><strong>NOT Gate:</strong> Inverts the input signal (0 → 1, 1 → 0).</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="de-glass-card p-4 h-100">
+          <h4 class="fw-bold text-white mb-3"><i class="bi bi-diagram-2 text-warning me-2"></i> 2. Universal Gates</h4>
+          <p class="text-secondary">NAND and NOR gates are called universal gates because any logic circuit or Boolean function can be implemented using exclusively NAND or NOR gates.</p>
+          <ul class="text-secondary small">
+            <li><strong>NAND Gate:</strong> Inverted AND gate (NOT AND).</li>
+            <li><strong>NOR Gate:</strong> Inverted OR gate (NOT OR).</li>
+            <li><strong>XOR / XNOR:</strong> Used for parity and arithmetic additions.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div id="footer-mount"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script type="module" src="../js/app.js"></script>
+  <script type="module">
+    document.addEventListener('DOMContentLoaded', () => {
+      const decInput = document.getElementById('num-input-decimal');
+      function convert() {
+        const val = parseInt(decInput.value, 10) || 0;
+        const binStr = (val >>> 0).toString(2).padStart(8, '0');
+        document.getElementById('res-binary').value = binStr;
+        document.getElementById('res-octal').value = val.toString(8);
+        document.getElementById('res-hex').value = val.toString(16).toUpperCase();
+        
+        // 1's Complement (flip all bits)
+        const comp1 = binStr.split('').map(b => b === '1' ? '0' : '1').join('');
+        document.getElementById('res-1comp').value = comp1;
+
+        // 8-bit 2's complement of positive integer
+        const comp2 = ((~val + 1) & 0xFF).toString(2).padStart(8, '0');
+        document.getElementById('res-2comp').value = comp2;
+      }
+      if (decInput) {
+        decInput.addEventListener('input', convert);
+        convert();
+      }
+    });
+  </script>
+</body>
+</html>

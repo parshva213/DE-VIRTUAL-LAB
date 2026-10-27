@@ -1,0 +1,295 @@
+/* ==========================================================================
+   DE VIRTUAL LAB — SIMULATOR STYLES (simulator.css)
+   ========================================================================== */
+
+/* ── Section Label ─────────────────────────────────── */
+.section-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: #00e5ff;
+  text-shadow: 0 0 10px rgba(0, 229, 255, 0.5);
+}
+
+/* ── Divider ───────────────────────────────────────── */
+.divider-line {
+  border: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* ─────────────────────────────────────────────────── */
+/*  SWITCH / INPUT CARDS                               */
+/* ─────────────────────────────────────────────────── */
+.sw-card {
+  background: rgba(15, 23, 42, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 10px;
+  padding: 0.75rem 1rem;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.sw-card:hover {
+  border-color: rgba(0, 229, 255, 0.3);
+  background: rgba(30, 41, 59, 0.85);
+}
+
+.sw-card.active {
+  border-color: rgba(0, 200, 83, 0.5);
+  background: rgba(0, 200, 83, 0.06);
+}
+
+/* LED circle inside switch card */
+.sw-led {
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  border-radius: 50%;
+  background: #1e293b;
+  border: 2px solid #475569;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 800;
+  font-size: 1rem;
+  color: #94a3b8;
+  transition: all 0.2s ease;
+}
+
+.sw-led.active {
+  background: #00c853;
+  border-color: #86efac;
+  color: #0f172a;
+  box-shadow: 0 0 14px rgba(0, 200, 83, 0.7);
+}
+
+/* PIN label */
+.sw-title {
+  font-weight: 700;
+  font-size: 0.88rem;
+  color: #f1f5f9;
+  line-height: 1.2;
+  margin-bottom: 3px;
+}
+
+.sw-bit {
+  font-weight: 500;
+  color: #94a3b8;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78rem;
+}
+
+/* Status badge LOW / HIGH */
+.sw-status {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 4px;
+  background: rgba(71, 85, 105, 0.5);
+  color: #94a3b8;
+  border: 1px solid rgba(71, 85, 105, 0.5);
+  transition: all 0.2s ease;
+}
+
+.sw-status.high {
+  background: rgba(0, 200, 83, 0.2);
+  color: #86efac;
+  border-color: rgba(0, 200, 83, 0.4);
+}
+
+/* ── Toggle Switch ───────────────────────────────── */
+.de-toggle {
+  width: 3rem !important;
+  height: 1.6rem !important;
+  cursor: pointer;
+  background-color: #334155 !important;
+  border-color: #475569 !important;
+  flex-shrink: 0;
+}
+
+.de-toggle:checked {
+  background-color: #00c853 !important;
+  border-color: #00c853 !important;
+  box-shadow: 0 0 10px rgba(0, 200, 83, 0.5) !important;
+}
+
+/* ── Gate Select Dropdown ───────────────────────── */
+.de-select {
+  background: #0f172a !important;
+  color: #f1f5f9 !important;
+  border: 1px solid #334155 !important;
+  border-radius: 8px !important;
+  font-weight: 600;
+  font-size: 0.88rem;
+  padding: 0.5rem 0.85rem;
+}
+
+.de-select:focus {
+  background: #1e293b !important;
+  border-color: #00e5ff !important;
+  box-shadow: 0 0 0 3px rgba(0, 229, 255, 0.2) !important;
+  color: #ffffff !important;
+  outline: none;
+}
+
+/* ── Output LED ─────────────────────────────────── */
+.output-led {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #1e293b;
+  border: 3px solid #475569;
+  transition: all 0.25s ease;
+}
+
+.output-led.active {
+  background: #00c853;
+  border-color: #86efac;
+  box-shadow: 0 0 28px rgba(0, 200, 83, 0.7), 0 0 56px rgba(0, 200, 83, 0.3);
+}
+
+.output-led-digit {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 800;
+  font-size: 1.75rem;
+  color: #94a3b8;
+  line-height: 1;
+  transition: color 0.2s ease;
+}
+
+.output-led.active .output-led-digit {
+  color: #0f172a;
+}
+
+.volt-badge {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 4px 14px;
+  border-radius: 20px;
+  background: rgba(71, 85, 105, 0.4);
+  color: #94a3b8;
+  border: 1px solid rgba(71, 85, 105, 0.4);
+  transition: all 0.2s ease;
+}
+
+.volt-badge.active {
+  background: rgba(0, 200, 83, 0.2);
+  color: #86efac;
+  border-color: rgba(0, 200, 83, 0.5);
+}
+
+/* ─────────────────────────────────────────────────── */
+/*  SVG CANVAS AREA                                    */
+/* ─────────────────────────────────────────────────── */
+.canvas-wrap {
+  position: relative;
+  overflow: hidden;
+}
+
+.canvas-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.85rem 1.25rem 0 1.25rem;
+  background: rgba(15, 23, 42, 0.85);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+}
+
+.canvas-body {
+  padding: 1rem 1.25rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.circuit-svg {
+  width: 100%;
+  max-width: 680px;
+  height: 240px;
+  display: block;
+}
+
+/* ─────────────────────────────────────────────────── */
+/*  TRUTH TABLE                                        */
+/* ─────────────────────────────────────────────────── */
+.de-table {
+  color: #f1f5f9 !important;
+  border-color: rgba(255, 255, 255, 0.1);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+}
+
+.de-table th {
+  background: rgba(15, 23, 42, 0.95) !important;
+  color: #00e5ff !important;
+  border-bottom: 2px solid #00e5ff !important;
+  padding: 0.6rem 1rem;
+  text-align: center;
+}
+
+.de-table td {
+  background: rgba(30, 41, 59, 0.5) !important;
+  color: #f1f5f9 !important;
+  padding: 0.5rem 1rem;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.de-table tr.active-row td {
+  background: rgba(0, 200, 83, 0.25) !important;
+  color: #86efac !important;
+  font-weight: 700;
+}
+
+/* ─────────────────────────────────────────────────── */
+/*  BOOLEAN EXPRESSION BOX                             */
+/* ─────────────────────────────────────────────────── */
+.bool-expr-box {
+  background: #090d16;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 1rem 1.25rem;
+  text-align: center;
+  min-height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ─────────────────────────────────────────────────── */
+/*  K-MAP CELLS                                        */
+/* ─────────────────────────────────────────────────── */
+.kmap-cell {
+  cursor: pointer;
+  transition: background 0.2s ease;
+  background: rgba(30, 41, 59, 0.6);
+}
+
+.kmap-cell:hover {
+  background: rgba(0, 229, 255, 0.15) !important;
+}
+
+.kmap-cell.active {
+  background: rgba(0, 200, 83, 0.3) !important;
+  box-shadow: inset 0 0 10px rgba(0, 200, 83, 0.3);
+}
+
+/* ─────────────────────────────────────────────────── */
+/*  SVG Wire Signal Pulse Animation                    */
+/* ─────────────────────────────────────────────────── */
+@keyframes wireFlow {
+  to { stroke-dashoffset: -40; }
+}

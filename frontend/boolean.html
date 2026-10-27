@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Boolean Logic & Canonical Solver — DE Virtual Lab</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+
+  <div id="navbar-mount"></div>
+
+  <main class="container py-4">
+    <div class="mb-4 text-center">
+      <h1 class="fw-bold text-white mb-2"><i class="bi bi-calculator text-amber me-2"></i> Boolean Logic & Canonical Solver</h1>
+      <p class="text-secondary lead">Analyze canonical Sum of Products (SOP Σm), Product of Sums (POS), and review foundational Boolean algebra laws.</p>
+    </div>
+
+    <!-- Gate SOP Solver Card -->
+    <div class="de-glass-card p-4 mb-4">
+      <h4 class="fw-bold text-amber mb-3"><i class="bi bi-gear-wide-connected me-2"></i> Gate SOP Derivation</h4>
+      <div class="row g-3 align-items-center">
+        <div class="col-md-5">
+          <label class="form-label text-white font-mono small">Select Gate for Canonical Derivation:</label>
+          <select id="select-gate-sop" class="form-select font-mono fs-5">
+            <option value="AND">AND Gate</option>
+            <option value="OR">OR Gate</option>
+            <option value="NOT">NOT Gate</option>
+            <option value="NAND">NAND Gate</option>
+            <option value="NOR">NOR Gate</option>
+            <option value="XOR">XOR Gate</option>
+            <option value="XNOR">XNOR Gate</option>
+          </select>
+        </div>
+        <div class="col-md-7">
+          <div class="p-3 rounded bg-dark border border-secondary text-center">
+            <div id="sop-expr-output" class="font-mono fw-bold text-cyan fs-4 mb-1">Y = A · B</div>
+            <span id="sop-minterm-output" class="badge de-badge-green font-mono">Sigma Minterms: Σm(3)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Laws Reference Table -->
+    <div class="de-glass-card p-4">
+      <h4 class="fw-bold text-cyan mb-3"><i class="bi bi-bookmark-star me-2"></i> Boolean Algebra Laws Reference</h4>
+      <div class="table-responsive">
+        <table class="table table-dark de-table align-middle">
+          <thead>
+            <tr>
+              <th style="width: 40%; color: #00e5ff !important;">LAW NAME</th>
+              <th style="color: #00e5ff !important;">ALGEBRAIC EXPRESSION</th>
+            </tr>
+          </thead>
+          <tbody id="laws-table-body">
+            <!-- Populated dynamically -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <div id="footer-mount"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script type="module" src="../js/app.js"></script>
+  <script type="module">
+    import { BooleanEngine } from '../js/boolean.js';
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const selectGate = document.getElementById('select-gate-sop');
+      const sopExpr = document.getElementById('sop-expr-output');
+      const sopMin = document.getElementById('sop-minterm-output');
+      const tableBody = document.getElementById('laws-table-body');
+
+      function updateSOP() {
+        const gate = selectGate.value;
+        const res = BooleanEngine.getMintermsSOP(gate);
+        sopExpr.textContent = res.sop;
+        sopMin.textContent = `Sigma Minterms: ${res.notation}`;
+      }
+
+      if (selectGate) {
+        selectGate.addEventListener('change', updateSOP);
+        updateSOP();
+      }
+
+      // Populate laws table
+      if (tableBody) {
+        const laws = BooleanEngine.getLawsList();
+        tableBody.innerHTML = laws.map(l => `
+          <tr>
+            <td class="fw-bold text-white">${l.name}</td>
+            <td class="font-mono text-success fw-bold fs-6">${l.law}</td>
+          </tr>
+        `).join('');
+      }
+    });
+  </script>
+</body>
+</html>

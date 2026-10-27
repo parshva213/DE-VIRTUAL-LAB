@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Virtual Experiments Manual — DE Virtual Lab</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+
+  <div id="navbar-mount"></div>
+
+  <main class="container py-4">
+    <div class="mb-4">
+      <h1 class="fw-bold text-white mb-1"><i class="bi bi-journal-check text-cyan me-2"></i> Virtual Experiments Manual</h1>
+      <p class="text-secondary">Structured laboratory exercises with procedure steps and progress verification.</p>
+    </div>
+
+    <!-- Hardware Breadboard Monitor Simulation Card -->
+    <div class="de-glass-card p-4 mb-4" style="border: 1px solid rgba(0, 229, 255, 0.4) !important;">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h5 class="fw-bold text-cyan mb-0"><i class="bi bi-cpu-fill me-2"></i> Physical Hardware Monitor (Breadboard Simulation)</h5>
+        <span class="badge de-badge-cyan font-mono">Manual Input Mode</span>
+      </div>
+      <div class="row g-2 text-center font-mono">
+        <div class="col-3">
+          <div class="p-2 rounded bg-dark border border-secondary">
+            <div class="small text-cyan mb-1">PIN A (Bit 0)</div>
+            <span id="mon-pin-a" class="badge bg-secondary font-mono">LOW (0)</span>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="p-2 rounded bg-dark border border-secondary">
+            <div class="small text-cyan mb-1">PIN B (Bit 1)</div>
+            <span id="mon-pin-b" class="badge bg-secondary font-mono">LOW (0)</span>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="p-2 rounded bg-dark border border-secondary">
+            <div class="small text-cyan mb-1">PIN C (Bit 2)</div>
+            <span id="mon-pin-c" class="badge bg-secondary font-mono">LOW (0)</span>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="p-2 rounded bg-dark border border-secondary">
+            <div class="small text-cyan mb-1">PIN D (Bit 3)</div>
+            <span id="mon-pin-d" class="badge bg-secondary font-mono">LOW (0)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Experiments List Mount -->
+    <div id="experiments-mount" class="d-flex flex-column gap-3"></div>
+  </main>
+
+  <div id="footer-mount"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script type="module" src="../js/app.js"></script>
+  <script type="module">
+    import { ExperimentsEngine } from '../js/experiments.js';
+    import { StorageEngine } from '../js/storage.js';
+    import { UIEngine } from '../js/ui.js';
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const mount = document.getElementById('experiments-mount');
+      const completed = StorageEngine.getCompletedExperiments();
+
+      mount.innerHTML = ExperimentsEngine.experimentsList.map(exp => {
+        const isDone = completed.includes(exp.id);
+        return `
+          <div class="de-glass-card p-4">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <h5 class="fw-bold text-white mb-0">${exp.title}</h5>
+              <button class="btn btn-outline-light btn-sm font-mono btn-mark-complete ${isDone ? 'active' : ''}" data-id="${exp.id}">
+                <i class="bi ${isDone ? 'bi-check-square-fill text-success' : 'bi-square'} me-1"></i> ${isDone ? 'Completed' : 'Mark as Complete'}
+              </button>
+            </div>
+            <p class="text-slate mb-3" style="color: #cbd5e1 !important;"><strong class="text-white">Objective:</strong> ${exp.objective}</p>
+            <div class="p-3 rounded mb-3" style="background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(255, 255, 255, 0.1);">
+              <h6 class="text-cyan font-mono fw-bold mb-2"><i class="bi bi-list-task me-1"></i> Procedure Steps:</h6>
+              <ol class="mb-0 ps-3" style="color: #cbd5e1 !important; font-size: 0.92rem;">
+                ${exp.procedure.map(step => `<li class="mb-1">${step}</li>`).join('')}
+              </ol>
+            </div>
+            <div class="d-flex justify-content-between align-items-center">
+              <a href="/simulator" class="btn btn-de-primary btn-sm">
+                <i class="bi bi-play-fill me-1"></i> Open in Simulator
+              </a>
+              <button class="btn btn-de-secondary btn-sm btn-verify-exp" data-id="${exp.id}">
+                <i class="bi bi-check-all me-1"></i> Verify Results
+              </button>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      document.querySelectorAll('.btn-mark-complete').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const expId = btn.getAttribute('data-id');
+          StorageEngine.markExperimentCompleted(expId, 100);
+          UIEngine.showToast(`Experiment marked as complete!`, 'success');
+          setTimeout(() => location.reload(), 600);
+        });
+      });
+
+      document.querySelectorAll('.btn-verify-exp').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const expId = btn.getAttribute('data-id');
+          const exp = ExperimentsEngine.experimentsList.find(e => e.id === expId);
+          const res = ExperimentsEngine.verifyExperiment(expId, exp.testInputs, exp.expectedOutput);
+          if (res.success) {
+            UIEngine.showToast(res.message, 'success');
+            setTimeout(() => location.reload(), 1200);
+          } else {
+            UIEngine.showToast(res.message, 'warning');
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

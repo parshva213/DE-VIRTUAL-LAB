@@ -1,0 +1,438 @@
+/* ==========================================================================
+   DE VIRTUAL LAB — CORE DESIGN SYSTEM (style.css)
+   Vibrant Dark Mode with Glassmorphism, Neon Accents & High Contrast Typography
+   ========================================================================== */
+
+:root {
+  /* Color Palette - Cyber Dark Theme */
+  --bg-dark: #0b1120;
+  --bg-surface: #1e293b;
+  --bg-card: rgba(30, 41, 59, 0.85);
+  --bg-card-hover: rgba(51, 65, 85, 0.95);
+
+  /* Neon Accents */
+  --accent-cyan: #00e5ff;
+  --accent-green: #00c853;
+  --accent-pink: #ff2e93;
+  --accent-purple: #7c4dff;
+  --accent-amber: #ffab00;
+  --accent-blue: #3b82f6;
+
+  /* Voltage & Logic Signals */
+  --high-signal: #00c853;
+  --high-signal-glow: rgba(0, 200, 83, 0.5);
+  --low-signal: #475569;
+  --low-signal-glow: rgba(71, 85, 105, 0.3);
+
+  /* High Contrast Text Colors */
+  --text-primary: #ffffff;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+  --text-dark: #0b1120;
+
+  /* Glassmorphism & Borders */
+  --glass-bg: rgba(30, 41, 59, 0.85);
+  --glass-border: rgba(255, 255, 255, 0.15);
+  --glass-border-hover: rgba(0, 229, 255, 0.5);
+  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.6);
+
+  /* Fonts */
+  --font-main: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Transitions & Radius */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-pill: 50px;
+  --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Global Reset & Base Styles */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg-dark);
+  background-image:
+    radial-gradient(at 0% 0%, rgba(0, 229, 255, 0.12) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(124, 77, 255, 0.12) 0px, transparent 50%);
+  background-attachment: fixed;
+  color: #f8fafc;
+  font-family: var(--font-main);
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ==========================================================================
+   SUPER HIGH-CONTRAST TYPOGRAPHY & VISIBILITY OVERRIDES
+   ========================================================================== */
+
+body, p, span, div, li, dt, dd, td, th, label, small, strong, em, b, i {
+  color: #f8fafc;
+}
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  color: #ffffff !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.3px;
+}
+
+/* Secondary & Muted Text Overrides (Fixes dark/invisible text) */
+p.lead, .lead,
+p.text-secondary, .text-secondary,
+span.text-secondary, div.text-secondary, li.text-secondary,
+.small, small,
+.text-muted, span.text-muted, div.text-muted {
+  color: #cbd5e1 !important; /* Bright light slate gray */
+}
+
+/* Specific Accent Colors */
+.text-cyan {
+  color: #00e5ff !important;
+}
+
+.text-green, .text-success {
+  color: #00c853 !important;
+}
+
+.text-warning, .text-amber {
+  color: #ffab00 !important;
+}
+
+.text-pink, .text-danger {
+  color: #ff2e93 !important;
+}
+
+.text-info {
+  color: #38bdf8 !important;
+}
+
+.text-purple {
+  color: #a78bfa !important;
+}
+
+.text-white {
+  color: #ffffff !important;
+}
+
+/* Links */
+a {
+  color: #00e5ff !important;
+  text-decoration: none;
+  transition: all var(--transition-fast);
+}
+
+a:hover {
+  color: #38bdf8 !important;
+  text-decoration: underline;
+}
+
+/* Cards & Glassmorphism Utility */
+.de-glass-card {
+  background: var(--glass-bg) !important;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border) !important;
+  border-radius: var(--radius-md);
+  box-shadow: var(--glass-shadow);
+  transition: all var(--transition-normal);
+  color: #f8fafc !important;
+}
+
+.de-glass-card:hover {
+  border-color: var(--glass-border-hover) !important;
+}
+
+.de-glass-card p,
+.de-glass-card span,
+.de-glass-card li,
+.de-glass-card div {
+  color: inherit;
+}
+
+/* Bootstrap Accordion Dark Overrides */
+.accordion-item {
+  background: rgba(30, 41, 59, 0.85) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  color: #f8fafc !important;
+  border-radius: var(--radius-md) !important;
+  overflow: hidden;
+  margin-bottom: 0.75rem;
+}
+
+.accordion-button {
+  background: rgba(15, 23, 42, 0.9) !important;
+  color: #00e5ff !important;
+  font-weight: 700 !important;
+  font-size: 1.05rem !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 1rem 1.25rem;
+}
+
+.accordion-button:not(.collapsed) {
+  background: rgba(30, 41, 59, 0.95) !important;
+  color: #00e5ff !important;
+  border-bottom: 1px solid rgba(0, 229, 255, 0.3) !important;
+}
+
+.accordion-button::after {
+  filter: invert(1) brightness(2) !important;
+}
+
+.accordion-body {
+  background: rgba(15, 23, 42, 0.7) !important;
+  color: #cbd5e1 !important;
+  padding: 1.25rem;
+}
+
+.accordion-body p,
+.accordion-body li,
+.accordion-body div {
+  color: #cbd5e1 !important;
+}
+
+/* Navigation Bar */
+.de-navbar {
+  background: rgba(11, 17, 32, 0.95) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--glass-border);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  padding: 0.75rem 1rem;
+}
+
+.de-navbar .navbar-brand {
+  color: #ffffff !important;
+  font-weight: 800;
+  font-size: 1.35rem;
+  letter-spacing: -0.5px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.de-navbar .navbar-brand .brand-icon {
+  color: var(--accent-cyan);
+  filter: drop-shadow(0 0 8px var(--accent-cyan));
+}
+
+.de-navbar .nav-link {
+  color: #cbd5e1 !important;
+  font-weight: 500;
+  padding: 0.5rem 1rem !important;
+  border-radius: var(--radius-pill);
+  transition: all var(--transition-fast);
+}
+
+.de-navbar .nav-link:hover,
+.de-navbar .nav-link.active {
+  color: var(--accent-cyan) !important;
+  background: rgba(0, 229, 255, 0.15);
+  font-weight: 700;
+}
+
+/* Form Controls & Input Labels */
+label,
+.form-label,
+.form-check-label {
+  color: #f1f5f9 !important;
+  font-weight: 600 !important;
+  margin-bottom: 0.35rem;
+}
+
+.form-control,
+.form-select {
+  background-color: #0f172a !important;
+  color: #ffffff !important;
+  border: 1px solid #475569 !important;
+  border-radius: var(--radius-sm);
+  padding: 0.6rem 0.85rem;
+  font-weight: 600;
+}
+
+.form-control:focus,
+.form-select:focus {
+  background-color: #1e293b !important;
+  color: #ffffff !important;
+  border-color: var(--accent-cyan) !important;
+  box-shadow: 0 0 0 0.25rem rgba(0, 229, 255, 0.25) !important;
+}
+
+/* Badges */
+.badge {
+  font-weight: 700 !important;
+  padding: 0.45em 0.8em;
+}
+
+.badge.bg-secondary {
+  background-color: #334155 !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+.de-badge-cyan {
+  background: rgba(0, 229, 255, 0.2);
+  color: #00e5ff !important;
+  border: 1px solid rgba(0, 229, 255, 0.4);
+}
+
+.de-badge-green {
+  background: rgba(0, 200, 83, 0.25);
+  color: #86efac !important;
+  border: 1px solid rgba(0, 200, 83, 0.5);
+}
+
+.de-badge-pink {
+  background: rgba(255, 46, 147, 0.2);
+  color: #ff2e93 !important;
+  border: 1px solid rgba(255, 46, 147, 0.4);
+}
+
+/* Custom Buttons */
+.btn-de-primary {
+  background: linear-gradient(135deg, #00e5ff 0%, #3b82f6 100%) !important;
+  color: #0b1120 !important;
+  font-weight: 800 !important;
+  border: none !important;
+  border-radius: var(--radius-pill) !important;
+  padding: 0.65rem 1.6rem;
+  box-shadow: 0 4px 20px rgba(0, 229, 255, 0.35);
+  transition: all var(--transition-normal);
+}
+
+.btn-de-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(0, 229, 255, 0.5);
+  color: #0b1120 !important;
+  text-decoration: none !important;
+}
+
+.btn-de-secondary {
+  background: rgba(30, 41, 59, 0.8) !important;
+  color: #ffffff !important;
+  border: 1px solid var(--glass-border-hover) !important;
+  border-radius: var(--radius-pill) !important;
+  padding: 0.65rem 1.6rem;
+  font-weight: 600 !important;
+  transition: all var(--transition-normal);
+}
+
+.btn-de-secondary:hover {
+  background: rgba(0, 229, 255, 0.15) !important;
+  border-color: var(--accent-cyan) !important;
+  color: var(--accent-cyan) !important;
+  text-decoration: none !important;
+}
+
+/* Hero Section */
+.de-hero {
+  padding: 4rem 1rem 3rem 1rem;
+  text-align: center;
+  position: relative;
+}
+
+.de-hero h1 {
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  font-weight: 800;
+  line-height: 1.15;
+  background: linear-gradient(135deg, #ffffff 0%, var(--accent-cyan) 60%, var(--accent-purple) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 1.25rem;
+}
+
+.de-hero p.lead {
+  color: #cbd5e1 !important;
+  font-size: 1.2rem;
+  max-width: 750px;
+  margin: 0 auto 2rem auto;
+}
+
+/* Features Grid Cards */
+.feature-card {
+  height: 100%;
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.feature-icon-wrapper {
+  width: 54px;
+  height: 54px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  margin-bottom: 1.25rem;
+  background: rgba(0, 229, 255, 0.15);
+  color: var(--accent-cyan);
+  border: 1px solid rgba(0, 229, 255, 0.3);
+}
+
+.feature-card h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  color: #ffffff !important;
+}
+
+.feature-card p {
+  color: #cbd5e1 !important;
+  font-size: 0.95rem;
+  flex: 1;
+}
+
+/* Code & Mono Text */
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+/* Footer */
+.de-footer {
+  background: #060a12;
+  border-top: 1px solid var(--glass-border);
+  padding: 2.5rem 0 1.5rem 0;
+  margin-top: 4rem;
+  color: #cbd5e1;
+  font-size: 0.9rem;
+}
+
+.de-footer h5 {
+  color: #ffffff !important;
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.de-footer ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.de-footer ul li {
+  margin-bottom: 0.5rem;
+}
+
+.de-footer a {
+  color: #cbd5e1 !important;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.de-footer a:hover {
+  color: var(--accent-cyan) !important;
+}

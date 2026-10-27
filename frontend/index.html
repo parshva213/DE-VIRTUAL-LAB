@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DE Virtual Lab — Hardware Input → Digital Circuit Visualization System</title>
+  <meta name="description" content="Web-based Digital Electronics Virtual Lab where real digital input signals drive real-time logic gates, animated circuit schematics, truth tables, and K-Map solvers.">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Bootstrap 5 CSS & Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/simulator.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+
+  <!-- Dynamic Header/Navbar Mount -->
+  <div id="navbar-mount"></div>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="de-hero">
+      <div class="container">
+        <div class="mb-3">
+          <span class="badge de-badge-cyan px-3 py-2 rounded-pill font-mono">
+            <i class="bi bi-cpu me-1"></i> Web Serial API + Digital Logic Engine
+          </span>
+        </div>
+        <h1>DE VIRTUAL LAB</h1>
+        <p class="lead">
+          Learn Digital Electronics by providing real digital inputs and watching the circuit work. Connect hardware switches or emulate inputs to analyze logic gates, truth tables, and Boolean expressions in real-time.
+        </p>
+        
+        <div class="d-flex flex-wrap justify-content-center gap-3">
+          <a href="/simulator" class="btn btn-de-primary btn-lg">
+            <i class="bi bi-play-circle-fill me-2"></i> Start Simulator
+          </a>
+          <a href="/learn" class="btn btn-de-secondary btn-lg">
+            <i class="bi bi-book-half me-2"></i> Learn Digital Electronics
+          </a>
+          <a href="/experiments" class="btn btn-de-secondary btn-lg">
+            <i class="bi bi-journal-text me-2"></i> View Experiments
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quick Interactive Gate Demo Banner -->
+    <section class="container my-4">
+      <div class="de-glass-card p-4">
+        <div class="row align-items-center">
+          <div class="col-lg-5">
+            <span class="badge de-badge-green font-mono mb-2">LIVE DEMO</span>
+            <h3 class="fw-bold">Interactive Hardware Input Demo</h3>
+            <p class="text-secondary small">
+              Toggle the switch inputs below to observe live signal propagation through the AND logic gate schematic instantly.
+            </p>
+            <div class="d-flex gap-3 mb-3">
+              <div class="form-check form-switch fs-5">
+                <input class="form-check-input de-toggle" type="checkbox" id="demo-switch-a">
+                <label class="form-check-label font-mono small text-secondary" for="demo-switch-a">Input A</label>
+              </div>
+              <div class="form-check form-switch fs-5">
+                <input class="form-check-input de-toggle" type="checkbox" id="demo-switch-b">
+                <label class="form-check-label font-mono small text-secondary" for="demo-switch-b">Input B</label>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-7 text-center">
+            <svg id="home-demo-svg" class="circuit-svg-stage" style="height: 180px;"></svg>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Feature Cards Grid (WF-3 Required Cards) -->
+    <section class="container my-5">
+      <div class="text-center mb-5">
+        <h2 class="fw-bold text-white mb-2">Platform Features</h2>
+        <p class="text-secondary">Complete suite of digital electronics learning and simulation tools</p>
+      </div>
+
+      <div class="row g-4">
+        <!-- 1. Interactive Simulator -->
+        <div class="col-md-6 col-lg-3">
+          <a href="/simulator" class="text-decoration-none">
+            <div class="de-glass-card feature-card">
+              <div class="feature-icon-wrapper">
+                <i class="bi bi-sliders"></i>
+              </div>
+              <h3 class="text-white">Interactive Simulator</h3>
+              <p>Simulate NOT, AND, OR, NAND, NOR, XOR, XNOR logic gates with animated signal wire schematics.</p>
+              <span class="text-info font-mono small">Launch Simulator <i class="bi bi-arrow-right"></i></span>
+            </div>
+          </a>
+        </div>
+
+        <!-- 2. Truth Tables -->
+        <div class="col-md-6 col-lg-3">
+          <a href="/truth-table" class="text-decoration-none">
+            <div class="de-glass-card feature-card">
+              <div class="feature-icon-wrapper text-success" style="background: rgba(0, 200, 83, 0.1); border-color: rgba(0, 200, 83, 0.2);">
+                <i class="bi bi-table"></i>
+              </div>
+              <h3 class="text-white">Truth Tables</h3>
+              <p>Auto-generate 2^n row truth tables with live state row highlights and CSV dataset export.</p>
+              <span class="text-success font-mono small">Generate Tables <i class="bi bi-arrow-right"></i></span>
+            </div>
+          </a>
+        </div>
+
+        <!-- 3. Boolean Logic -->
+        <div class="col-md-6 col-lg-3">
+          <a href="/boolean" class="text-decoration-none">
+            <div class="de-glass-card feature-card">
+              <div class="feature-icon-wrapper text-warning" style="background: rgba(255, 171, 0, 0.1); border-color: rgba(255, 171, 0, 0.2);">
+                <i class="bi bi-calculator"></i>
+              </div>
+              <h3 class="text-white">Boolean Logic</h3>
+              <p>Solve canonical Sum of Products (SOP Σm), Product of Sums (POS), and review Boolean laws.</p>
+              <span class="text-warning font-mono small">Solve Expressions <i class="bi bi-arrow-right"></i></span>
+            </div>
+          </a>
+        </div>
+
+        <!-- 4. K-Maps -->
+        <div class="col-md-6 col-lg-3">
+          <a href="/kmap" class="text-decoration-none">
+            <div class="de-glass-card feature-card">
+              <div class="feature-icon-wrapper text-purple" style="color: #7c4dff; background: rgba(124, 77, 255, 0.1); border-color: rgba(124, 77, 255, 0.2);">
+                <i class="bi bi-grid-3x3"></i>
+              </div>
+              <h3 class="text-white">K-Maps</h3>
+              <p>Interactive 2, 3, and 4-variable Karnaugh Map solver grids with cell toggles and minimal logic derivation.</p>
+              <span class="font-mono small" style="color: #7c4dff;">Solve K-Maps <i class="bi bi-arrow-right"></i></span>
+            </div>
+          </a>
+        </div>
+
+        <!-- 5. Hardware Input -->
+        <div class="col-md-6 col-lg-3">
+          <a href="/simulator" class="text-decoration-none">
+            <div class="de-glass-card feature-card">
+              <div class="feature-icon-wrapper text-danger" style="color: #ff2e93; background: rgba(255, 46, 147, 0.1); border-color: rgba(255, 46, 147, 0.2);">
+                <i class="bi bi-usb-plug-fill"></i>
+              </div>
+              <h3 class="text-white">Hardware Input</h3>
+              <p>Connect physical Arduino or Micro:bit boards via Web Serial API for real-world signal testing.</p>
+              <span class="font-mono small" style="color: #ff2e93;">Connect Hardware <i class="bi bi-arrow-right"></i></span>
+            </div>
+          </a>
+        </div>
+
+        <!-- 6. Experiments -->
+        <div class="col-md-6 col-lg-3">
+          <a href="/experiments" class="text-decoration-none">
+            <div class="de-glass-card feature-card">
+              <div class="feature-icon-wrapper">
+                <i class="bi bi-journal-check"></i>
+              </div>
+              <h3 class="text-white">Experiments</h3>
+              <p>Syllabus-aligned virtual lab manual with step-by-step procedures and instant verification.</p>
+              <span class="text-info font-mono small">View Experiments <i class="bi bi-arrow-right"></i></span>
+            </div>
+          </a>
+        </div>
+
+        <!-- 7. Quiz -->
+        <div class="col-md-6 col-lg-3">
+          <a href="/quiz" class="text-decoration-none">
+            <div class="de-glass-card feature-card">
+              <div class="feature-icon-wrapper text-success" style="background: rgba(0, 200, 83, 0.1); border-color: rgba(0, 200, 83, 0.2);">
+                <i class="bi bi-patch-question-fill"></i>
+              </div>
+              <h3 class="text-white">Self Assessment Quiz</h3>
+              <p>Test your understanding of digital electronics with instant feedback and score logging.</p>
+              <span class="text-success font-mono small">Take Quiz <i class="bi bi-arrow-right"></i></span>
+            </div>
+          </a>
+        </div>
+
+        <!-- 8. Progress -->
+        <div class="col-md-6 col-lg-3">
+          <a href="progress" class="text-decoration-none">
+            <div class="de-glass-card feature-card">
+              <div class="feature-icon-wrapper text-warning" style="background: rgba(255, 171, 0, 0.1); border-color: rgba(255, 171, 0, 0.2);">
+                <i class="bi bi-graph-up-arrow"></i>
+              </div>
+              <h3 class="text-white">User Progress</h3>
+              <p>Track your lab completions, quiz achievements, badges, and export progress report JSON datasets.</p>
+              <span class="text-warning font-mono small">View Progress <i class="bi bi-arrow-right"></i></span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Dynamic Footer Mount -->
+  <div id="footer-mount"></div>
+
+  <!-- Bootstrap JS & Main App JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script type="module" src="../js/app.js"></script>
+  <script type="module">
+    import { SVGRenderer } from '../js/svgRenderer.js';
+    import { GateLogic } from '../js/gates.js';
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const swA = document.getElementById('demo-switch-a');
+      const swB = document.getElementById('demo-switch-b');
+
+      function updateDemo() {
+        const a = swA.checked ? 1 : 0;
+        const b = swB.checked ? 1 : 0;
+        const out = GateLogic.AND(a, b);
+        SVGRenderer.renderGateCircuit('home-demo-svg', 'AND', { A: a, B: b }, out);
+      }
+
+      if (swA && swB) {
+        swA.addEventListener('change', updateDemo);
+        swB.addEventListener('change', updateDemo);
+        updateDemo();
+      }
+    });
+  </script>
+</body>
+</html>
